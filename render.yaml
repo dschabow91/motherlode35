@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: motherlode-cmms-backend
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: "cd backend && npm install"
+    startCommand: "cd backend && npm start"
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: JWT_SECRET
+        value: change-me-in-prod
+  - type: static
+    name: motherlode-cmms-frontend
+    buildCommand: "cd frontend && npm install && npm run build"
+    publishPath: "frontend/dist"
